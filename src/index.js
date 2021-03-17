@@ -1,36 +1,30 @@
-const express = require('express');
 const { config } = require('dotenv');
-const { Client } = require('discord.js');
+const { Client } = require('discord.js')
 
 config();
 const { TOKEN_DISCORD } = process.env
-const bot = new Client();
-const app = express();
+const client = new Client()
 
-app.get("/", (request, response) => {
-  const ping = new Date();
-  ping.setHours(ping.getHours() - 3);
-  console.log(`Ping recebido às ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
+const robots = {
+  startingExpress: require('./robots/startingExpress'),
+  commands: require('./robots/commands')
+}
 
-bot.on('ready', () => {
-  console.log(`Logged in as ${bot.user.tag}!`);
-});
+function Start(){
 
-bot.on('message', (msg) => {
-  const { content } = msg
-  const cmds = {
-    "!botDiscord": 'https://github.com/AlanWehrliLC/Phoenix-Heart-Discord-Bot',
-    "!botTwitch": 'https://github.com/AlanWehrliLC/Phoenix-Heart-Twitch-Bot',
-    "!github": "https://github.com/AlanWehrliLC",
-    "!youtube": 'YOUTUBE: https://youtube.com/channel/UCnghGLwcxP0AuWdlqnUIKOg',
-    "!instagram": "INSTAGRAM: @sralanw",
-    "!commands": "!instagram, !youtube, !github, !botTwitch, !botDiscord",
-  };
+  robots.startingExpress()
+  readyDiscord()
 
-  cmds[content] && msg.reply(cmds[content]);
-});
+  robots.commands(client)
 
-bot.login(TOKEN_DISCORD)
+  client.login(TOKEN_DISCORD)
+  
+}
+
+function readyDiscord(){
+  client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`)
+  });
+}
+
+Start()
