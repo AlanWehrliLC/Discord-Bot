@@ -7,16 +7,20 @@ const client = new Client()
 
 const robots = {
   startingExpress: require('./robots/startingExpress'),
-  commands: require('./robots/commands')
+  startingFireBase: require('./robots/startingFireBase'),
+  commands: require('./robots/commands'),
+  addAndRemoveCommand: require('./robots/addAndRemoveCommand')
 }
 
 function Start(){
 
   robots.startingExpress()
+  const db = robots.startingFireBase()
   readyDiscord()
 
-  robots.commands(client)
-
+  robots.addAndRemoveCommand(db, client)
+  robots.commands(db, client)
+  
   client.login(TOKEN_DISCORD)
   
 }
