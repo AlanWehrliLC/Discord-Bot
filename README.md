@@ -1,2 +1,2 @@
-# Phoenix Heart Discord Bot
-  Discord Bot
+# Discord Bot
+  Discord bot with nodejs and integration with Cloud Firestore.
