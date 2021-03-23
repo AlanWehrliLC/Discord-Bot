@@ -12,7 +12,7 @@ function robot(db, client){
 
         const { content } = message
         const commandPromptDiscordChannel = {
-            "!helpAddNew": `Adicione o nome do comando !github e separado por um espaço coloque o conteúdo "GITHUB: https://github.com/AlanWehrliLC" utilizando de aspas duplas! O comando ficará assim: !addNew !github "GITHUB:  https://github.com/AlanWehrliLC"`,
+            "!helpNewCommand": `Adicione o nome do comando !github e separado por um espaço coloque o conteúdo "GITHUB: https://github.com/AlanWehrliLC" utilizando de aspas duplas! O comando ficará assim: !newCommand !github "GITHUB:  https://github.com/AlanWehrliLC"`,
             "!helpRemoveCommand": `Adicione o nome do comando !github para remover da lista de comando. O comando ficará assim: !removeCommand !github`
         };
           
@@ -25,14 +25,14 @@ function robot(db, client){
         if (message.channel.type == 'dm') return;
         if (!message.content.toLowerCase().startsWith(config.prefix.toLowerCase())) return;
         if (message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@${client.user.id}>`)) return;
-        if(message.content === '!addNew') return message.reply('Use o comando "!helpAddNew", para saber como usar o comando "!addNew"')
-        if (message.member.hasPermission('ADMINISTRATOR') && message.content.match(/!addNew/)) {
+        if(message.content === '!newCommand') return message.reply('Use o comando "!helpNewCommand", para saber como usar o comando "!newCommand"')
+        if (message.member.hasPermission('ADMINISTRATOR') && message.content.match(/!newCommand/)) {
             const textChannelValue = message.content
-            const textChannelValueReplace = textChannelValue.replace('!addNew ', '')
-            if (textChannelValue.match(/!addNew/)) {
+            const textChannelValueReplace = textChannelValue.replace('!newCommand ', '')
+            if (textChannelValue.match(/!newCommand/)) {
                 function addCommands(commands){
                     db.collection(client.user.id)
-                    .doc('commands')
+                    .doc(message.guild.id)
                     .set({
                         commands
                       }, {merge: true}
@@ -43,7 +43,7 @@ function robot(db, client){
                        message.reply('Comando adicionado com sucesso!')
                 }
                 addCommands(firebase.firestore.FieldValue.arrayUnion(textChannelValueReplace))
-            }else{return message.reply('Use o comando "!helpAddNew", para saber como usar o comando "!addNew"')}
+            }else{return message.reply('Use o comando "!helpNewCommand", para saber como usar o comando "!newCommand"')}
             
         }
         
@@ -58,12 +58,11 @@ function robot(db, client){
             const commandToTeRemoved = message.content.replace('!removeCommand ', '')
             if (message.member.hasPermission('ADMINISTRATOR') && message.content.match(/!removeCommand/)) {
 
-                db.collection(client.user.id).get().then((snapshot)=>{
-                    snapshot.forEach(doc => {
+                const docRef = db.collection(client.user.id).doc(message.guild.id)
+                docRef.get().then((doc)=>{
                         const commands = doc.data()
                         const commandsArray = commands.commands
                         receivingAndProcessingData(commandsArray)
-                    });
                 })
 
                 function receivingAndProcessingData(arrayDataCommands){
@@ -77,7 +76,7 @@ function robot(db, client){
 
                 function removeCommand(dadoTratado){
                     db.collection(client.user.id)
-                    .doc('commands')
+                    .doc(message.guild.id)
                     .update({
                         commands: firebase.firestore.FieldValue.arrayRemove(dadoTratado)
                       },

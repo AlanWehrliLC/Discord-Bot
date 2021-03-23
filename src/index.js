@@ -2,7 +2,7 @@ const { config } = require('dotenv');
 const { Client } = require('discord.js')
 
 config();
-const { TOKEN_DISCORD } = process.env
+const { TOKEN_DISCORD_TEST } = process.env
 const client = new Client()
 
 const robots = {
@@ -21,7 +21,7 @@ function Start(){
   robots.addAndRemoveCommand(db, client)
   robots.commands(db, client)
   
-  client.login(TOKEN_DISCORD)
+  client.login(TOKEN_DISCORD_TEST)
   
 }
 
