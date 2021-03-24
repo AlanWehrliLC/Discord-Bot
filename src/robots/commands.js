@@ -33,11 +33,13 @@ function robot(db, client){
     if (message.channel.type == 'dm') return;
     if (!message.content.toLowerCase().startsWith(config.prefix.toLowerCase())) return;
     if (message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@${client.user.id}>`)) return;
-    if(!message.content === '!commands') return message.reply('Use o comando "!helpRemoveCommand", para saber como usar o comando "!removeCommand"')
     if (message.content === "!commands") {
       const docRef = db.collection(client.user.id).doc(message.guild.id)
       docRef.get().then((doc)=>{
         const commands = doc.data()
+        if (commands === undefined) {
+          return message.reply('There are no commands to be executed!')
+        }
         const commandsArray = commands.commands
         receiveData(commandsArray)
       })

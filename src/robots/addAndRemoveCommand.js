@@ -8,8 +8,7 @@ function robot(db, client){
         if (message.channel.type == 'dm') return;
         if (!message.content.toLowerCase().startsWith(config.prefix.toLowerCase())) return;
         if (message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@${client.user.id}>`)) return;
-        if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('Você não tem permissão!')
-
+        if(!message.member.hasPermission('ADMINISTRATOR')) return
         const { content } = message
         const commandPromptDiscordChannel = {
             "!helpNewCommand": `Adicione o nome do comando !github e separado por um espaço coloque o conteúdo "GITHUB: https://github.com/AlanWehrliLC" utilizando de aspas duplas! O comando ficará assim: !newCommand !github "GITHUB:  https://github.com/AlanWehrliLC"`,
