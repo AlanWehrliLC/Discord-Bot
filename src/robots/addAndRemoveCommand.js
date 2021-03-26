@@ -12,7 +12,7 @@ function robot(db, client){
         const { content } = message
         const commandPromptDiscordChannel = {
             "!helpNewCommand": `Adicione o nome do comando !github e separado por um espaço coloque o conteúdo "GITHUB: https://github.com/AlanWehrliLC" utilizando de aspas duplas! O comando ficará assim: !newCommand !github "GITHUB:  https://github.com/AlanWehrliLC"`,
-            "!helpRemoveCommand": `Adicione o nome do comando !github para remover da lista de comando. O comando ficará assim: !removeCommand !github`
+            "!helpRemoveCommand": `Adicione o nome do comando !github para remover da lista de comando. O comando ficará assim: !removeCommand !github`,
         };
           
         commandPromptDiscordChannel[content] && message.reply(commandPromptDiscordChannel[content]);

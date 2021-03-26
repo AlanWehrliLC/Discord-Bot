@@ -13,20 +13,17 @@ function robot(db, client){
       const commandsArray = commands.commands
       receivingAndProcessingData(commandsArray)
     })
-
-                function receivingAndProcessingData(arrayDataCommands){
-                    for (let index = 0; index < arrayDataCommands.length; index++) {
-                        const element = arrayDataCommands[index];
-                        
-                        if (element.indexOf(getCommandUsed) != -1) {
-                          const valueForTheDiscordChannel = element.replace(`${getCommandUsed}`, '').replace(/"/g, '')
-                          message.reply(valueForTheDiscordChannel)
-                        }
-
-                    }
-                    
-                }
-  })
+    function receivingAndProcessingData(arrayDataCommands){
+      for (let index = 0; index < arrayDataCommands.length; index++) {
+        const element = arrayDataCommands[index];
+        
+        if (element.indexOf(getCommandUsed) != -1) {
+          const valueForTheDiscordChannel = element.replace(`${getCommandUsed}`, '').replace(/"/g, '')
+          message.reply(valueForTheDiscordChannel)
+      }
+    }
+  }
+})
 
   client.on('message', (message) => {
     if (message.author.bot) return;

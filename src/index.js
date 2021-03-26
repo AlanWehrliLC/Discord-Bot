@@ -1,15 +1,18 @@
 const { config } = require('dotenv');
-const { Client } = require('discord.js')
+const { Client, MessageEmbed } = require('discord.js')
 
 config();
 const { TOKEN_DISCORD } = process.env
 const client = new Client()
+const messageEmbed = new MessageEmbed()
 
 const robots = {
   startingExpress: require('./robots/startingExpress'),
   startingFireBase: require('./robots/startingFireBase'),
   commands: require('./robots/commands'),
-  addAndRemoveCommand: require('./robots/addAndRemoveCommand')
+  addAndRemoveCommand: require('./robots/addAndRemoveCommand'),
+  welcomeToTheServer: require('./robots/welcomeToTheServer'),
+  setImageAndChannelID: require('./robots/setImageAndChannelID')
 }
 
 function Start(){
@@ -18,6 +21,8 @@ function Start(){
   const db = robots.startingFireBase()
   readyDiscord()
 
+  robots.welcomeToTheServer(db, client, messageEmbed)
+  robots.setImageAndChannelID(db, client)
   robots.addAndRemoveCommand(db, client)
   robots.commands(db, client)
   
