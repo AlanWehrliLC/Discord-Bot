@@ -5,6 +5,7 @@ config();
 const { TOKEN_DISCORD } = process.env
 const client = new Client()
 const messageEmbed = new MessageEmbed()
+client.setMaxListeners(0)
 
 const robots = {
   startingExpress: require('./robots/startingExpress'),
@@ -24,7 +25,7 @@ function Start(){
 
   robots.twitchNotification(db, client)
   robots.welcomeToTheServer(db, client, messageEmbed)
-  robots.setImageAndChannelID(db, client)
+  robots.setImagesAndChannelsID(db, client)
   robots.addAndRemoveCommand(db, client)
   robots.commands(db, client)
   
