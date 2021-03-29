@@ -12,7 +12,8 @@ const robots = {
   commands: require('./robots/commands'),
   addAndRemoveCommand: require('./robots/addAndRemoveCommand'),
   welcomeToTheServer: require('./robots/welcomeToTheServer'),
-  setImageAndChannelID: require('./robots/setImageAndChannelID')
+  setImagesAndChannelsID: require('./robots/setImagesAndChannelsID'),
+  twitchNotification: require('./robots/twitchNotification')
 }
 
 function Start(){
@@ -21,6 +22,7 @@ function Start(){
   const db = robots.startingFireBase()
   readyDiscord()
 
+  robots.twitchNotification(db, client)
   robots.welcomeToTheServer(db, client, messageEmbed)
   robots.setImageAndChannelID(db, client)
   robots.addAndRemoveCommand(db, client)
