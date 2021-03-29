@@ -1,7 +1,7 @@
 const configPrefix = require("../../config.json")
 const { config } = require('dotenv');
 const https = require('https');
-
+//I'm sorry, but I found no other way to do that!
 config();
 const { CLIENT_ID_TWITCH_APPLICATION } = process.env
 
@@ -20,6 +20,7 @@ function robot(db, client){
           const dataUserNameTwitch = data.userNameTwitch
           const dataChannelIDTwitch = data.channelIDDiscordTwitchStatus
           const dataliveMessageTwitch = data.liveMessageTwitch
+          let valueStatus = 0
           
           const channel = client.channels.cache.get(dataChannelIDTwitch)
           
@@ -29,8 +30,15 @@ function robot(db, client){
           if (message.guild.id != message.guild) {
               return
             }if(dataUserNameTwitch != undefined && dataChannelIDTwitch != undefined){
-                twitchLiveCheckStream(dataUserNameTwitch)
+              loopTime()
             }
+
+            function loopTime(){
+              setInterval(()=>{
+                twitchLiveCheckStream(dataUserNameTwitch)
+              }, 60000)
+            }
+
             function twitchLiveCheckStream(dataUserNameTwitch){
                 let optionsGetID = {
                   hostname: 'api.twitch.tv',
@@ -55,11 +63,11 @@ function robot(db, client){
                   });
                 }); 
               
-                function optionsStatusStream(pushID){
+                function optionsStatusStream(pullID){
                   let optionsStatusStream = {
                     hostname: 'api.twitch.tv',
                   family: 4,
-                    path: `/kraken/streams/${pushID}`,
+                    path: `/kraken/streams/${pullID}`,
                     headers: {
                       'Accept': 'application/vnd.twitchtv.v5+json',
                       'Client-ID': CLIENT_ID_TWITCH_APPLICATION 
@@ -80,8 +88,18 @@ function robot(db, client){
                   }); 
                   
                   function deliveringANotification(notificationStatus){
-                    if (notificationStatus != null) {
+                    if (notificationStatus === null) {
+                      valueStatus = 0
+                    }
+                    if (notificationStatus != null && valueStatus == 0) {
+                      valueStatus = 1
+                    }
+                    if (notificationStatus != null && valueStatus === 1) {
+                      valueStatus = 2
                       channel.send(`${dataliveMessageTwitch}\nhttps://www.twitch.tv/${dataUserNameTwitch}`)
+                    }
+                    if (notificationStatus === null && valueStatus === 2) {
+                      valueStatus = 0
                     }
                   }
     
