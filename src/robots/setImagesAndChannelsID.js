@@ -18,10 +18,10 @@ function robot(db, client){
                         liveMessageTwitch: liveMessageTwitchConfig
                       }, {merge: true}
                       )
-                       .then(() => { console.log( `Documento inserido com sucesso!` ) })
+                       .then(() => { console.log( `Document inserted successfully!` ) })
                        .catch(err => {console.log(err) })
     
-                       message.reply('Comando adicionado com sucesso!')
+                       message.reply('Command added successfully!')
                 }
                 addCommands(textChannelValueReplace)
             }
@@ -45,10 +45,10 @@ function robot(db, client){
                         userNameTwitch: userNameTwitchConfig
                       }, {merge: true}
                       )
-                       .then(() => { console.log( `Documento inserido com sucesso!` ) })
+                       .then(() => { console.log( `Document inserted successfully!` ) })
                        .catch(err => {console.log(err) })
     
-                       message.reply('Comando adicionado com sucesso!')
+                       message.reply('Command added successfully!')
                 }
                 addCommands(textChannelValueReplace)
             }
@@ -72,10 +72,10 @@ function robot(db, client){
                         channelIDDiscordTwitchStatus: channelIDConfigDiscordTwitchStatus
                       }, {merge: true}
                       )
-                       .then(() => { console.log( `Documento inserido com sucesso!` ) })
+                       .then(() => { console.log( `Document inserted successfully!` ) })
                        .catch(err => {console.log(err) })
     
-                       message.reply('Comando adicionado com sucesso!')
+                       message.reply('Command added successfully!')
                 }
                 addCommands(textChannelValueReplace)
             }
@@ -99,10 +99,10 @@ function robot(db, client){
                         channelIDDiscordWelcome: channelIDConfigDiscordWelcome
                       }, {merge: true}
                       )
-                       .then(() => { console.log( `Documento inserido com sucesso!` ) })
+                       .then(() => { console.log( `Document inserted successfully!` ) })
                        .catch(err => {console.log(err) })
     
-                       message.reply('Comando adicionado com sucesso!')
+                       message.reply('Command added successfully!')
                 }
                 addCommands(textChannelValueReplace)
             }
@@ -126,10 +126,10 @@ function robot(db, client){
                         imageURL: imageURL
                       }, {merge: true}
                       )
-                       .then(() => { console.log( `Documento inserido com sucesso!` ) })
+                       .then(() => { console.log( `Document inserted successfully!` ) })
                        .catch(err => {console.log(err) })
     
-                       message.reply('Comando adicionado com sucesso!')
+                       message.reply('Command added successfully!')
                 }
                 addCommands(textChannelValueReplace)
             }
@@ -153,10 +153,10 @@ function robot(db, client){
                         setColorEmbed: setColorConfig
                       }, {merge: true}
                       )
-                       .then(() => { console.log( `Documento inserido com sucesso!` ) })
+                       .then(() => { console.log( `Document inserted successfully!` ) })
                        .catch(err => {console.log(err) })
     
-                       message.reply('Comando adicionado com sucesso!')
+                       message.reply('Command added successfully!')
                 }
                 addCommands(textChannelValueReplace)
             }
@@ -180,10 +180,10 @@ function robot(db, client){
                         setTitleEmbed: setTitleConfig
                       }, {merge: true}
                       )
-                       .then(() => { console.log( `Documento inserido com sucesso!` ) })
+                       .then(() => { console.log( `Document inserted successfully!` ) })
                        .catch(err => {console.log(err) })
     
-                       message.reply('Comando adicionado com sucesso!')
+                       message.reply('Command added successfully!')
                 }
                 addCommands(textChannelValueReplace)
             }
@@ -207,10 +207,10 @@ function robot(db, client){
                         setDescriptionEmbed: setDescriptionConfig
                       }, {merge: true}
                       )
-                       .then(() => { console.log( `Documento inserido com sucesso!` ) })
+                       .then(() => { console.log( `Document inserted successfully!` ) })
                        .catch(err => {console.log(err) })
     
-                       message.reply('Comando adicionado com sucesso!')
+                       message.reply('Command added successfully!')
                 }
                 addCommands(textChannelValueReplace)
             }

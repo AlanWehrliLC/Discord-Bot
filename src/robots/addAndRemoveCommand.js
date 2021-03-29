@@ -3,22 +3,6 @@ const firebase = require('firebase');
 
 function robot(db, client){
 
-    client.on('message', message => {
-        if (message.author.bot) return;
-        if (message.channel.type == 'dm') return;
-        if (!message.content.toLowerCase().startsWith(config.prefix.toLowerCase())) return;
-        if (message.content.startsWith(`<@!${client.user.id}>`) || message.content.startsWith(`<@${client.user.id}>`)) return;
-        if(!message.member.hasPermission('ADMINISTRATOR')) return
-        const { content } = message
-        const commandPromptDiscordChannel = {
-            "!helpNewCommand": `Adicione o nome do comando !github e separado por um espaço coloque o conteúdo "GITHUB: https://github.com/AlanWehrliLC" utilizando de aspas duplas! O comando ficará assim: !newCommand !github "GITHUB:  https://github.com/AlanWehrliLC"`,
-            "!helpRemoveCommand": `Adicione o nome do comando !github para remover da lista de comando. O comando ficará assim: !removeCommand !github`,
-        };
-          
-        commandPromptDiscordChannel[content] && message.reply(commandPromptDiscordChannel[content]);
-        
-      })
-
       client.on('message', (message) => {
         if (message.author.bot) return;
         if (message.channel.type == 'dm') return;
@@ -36,13 +20,13 @@ function robot(db, client){
                         commands
                       }, {merge: true}
                       )
-                       .then(() => { console.log( `Documento inserido com sucesso!` ) })
+                       .then(() => { console.log( `Document inserted successfully!` ) })
                        .catch(err => {console.log(err) })
     
-                       message.reply('Comando adicionado com sucesso!')
+                       message.reply('Command added successfully!')
                 }
                 addCommands(firebase.firestore.FieldValue.arrayUnion(textChannelValueReplace))
-            }else{return message.reply('Use o comando "!helpNewCommand", para saber como usar o comando "!newCommand"')}
+            }
             
         }
         
@@ -80,9 +64,9 @@ function robot(db, client){
                         commands: firebase.firestore.FieldValue.arrayRemove(dadoTratado)
                       },
                       )
-                       .then(() => { console.log( `Documento removido com sucesso!` ) })
+                       .then(() => { console.log( `Document removed successfully!` ) })
                        .catch(err => {console.log(err) })
-                       message.reply(`O comando ${commandToTeRemoved} foi removido com sucesso!`)
+                       message.reply(`The command ${commandToTeRemoved} has been removed successfully!`)
                 }
             }
             
