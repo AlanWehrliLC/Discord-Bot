@@ -19,7 +19,7 @@ const robots = {
 
 function Start(){
 
-  robots.startingExpress()
+  //robots.startingExpress()
   const db = robots.startingFireBase()
   readyDiscord()
 
