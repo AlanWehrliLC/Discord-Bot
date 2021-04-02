@@ -112,9 +112,9 @@ npm run start
 </br>
 Coloque o ID no lugar do IDDISCORD
 </br>
-```
+`
 https://discord.com/api/oauth2/authorize?client_id=IDDISCORD&scope=bot&permissions=1
-```
+`
 </br>
 Nessa URL contem as permições necessárias, que você pode dar ao Bot, que fica no fim da URL "permissions=", o número após ele, são as permições (Exemplo: Administrador = 8, etc). Veja como adquirir o <a href="#id-do-bot">ID do Bot</a>  e as <a href="#permições">permições</a> abaixo:
 
