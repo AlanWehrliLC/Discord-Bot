@@ -110,9 +110,11 @@ npm run start
 
 > Para colocar o bot seu Discord, é necessário pegar o ID do bot, criado junto com o aplicativo do Discord e unir com o link abaixo:
 </br>
-Coloque o ID no lugar do <IDDISCORD>
+Coloque o ID no lugar do IDDISCORD
 </br>
-`https://discord.com/api/oauth2/authorize?client_id=<IDDISCORD>&scope=bot&permissions=1`
+`
+https://discord.com/api/oauth2/authorize?client_id=IDDISCORD&scope=bot&permissions=1
+`
 </br>
 Nessa URL contem as permições necessárias, que você pode dar ao Bot, que fica no fim da URL "permissions=", o número após ele, são as permições (Exemplo: Administrador = 8, etc). Veja como adquirir o <a href="#id-do-bot">ID do Bot</a>  e as <a href="#permições">permições</a> abaixo:
 
