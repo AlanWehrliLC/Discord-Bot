@@ -1,6 +1,12 @@
 # Discord Bot
  ***Discord bot com nodejs e integração com Cloud Firestore.***
 
+> ## Guia
+
+<p align="center">
+  <a href="./GUIA.md">Guia do usuario</a>
+</p>
+
 ## Tecnologias utilizadas
 
 O projeto foi desenvolvido utilizando as seguintes tecnologias e APIs:
